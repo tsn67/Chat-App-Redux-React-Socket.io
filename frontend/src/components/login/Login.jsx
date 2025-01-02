@@ -27,7 +27,7 @@ const Login = () => {
         dispatch(changeTheme(theme=='dark'?'light':'dark'));
     }
 
-    const backEndUrl = 'http://localhost:3000/confirmUser';
+    const backEndUrl = 'https://chat-app-redux-react-socketio-production.up.railway.app/confirmUser';
 
     function loginUser() {
         if(username.length == 0) setError('username is empty!');
