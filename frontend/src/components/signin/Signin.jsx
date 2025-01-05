@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { changeTheme } from '../theme/themeSplicer';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
-
+import { io } from 'socket.io-client';
 
 const Signin = () => {
 
@@ -18,10 +18,24 @@ const Signin = () => {
     const [passwordMisMacth, setMisMatch] = useState(false);
     const [unknownError, setUnknownError] = useState('');
     const [status, setStatus] = useState('idle');
+    const [onlineCount, setOnlineCount] = useState(0);
+   
 
     useEffect(() => {
 
     }, [status]);
+
+    useEffect(() => {
+
+        const socket = io('http://localhost:3000');
+        socket.on('count', (msg) => {
+            setOnlineCount(msg.newCount);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
 
     if(status == 'waiting') {
         return (<div className={container+" "+theme}><h1>Loading...</h1></div>);
@@ -64,7 +78,7 @@ const Signin = () => {
                     username: username,
                     password: password
                 }
-                const response = await axios.post('https://chat-app-redux-react-socketio-production.up.railway.app/register', data);
+                const response = await axios.post('http://localhost:3000/register', data);
                 console.log(response.data);
                 setStatus('idle');
                 navigate('/');
@@ -100,7 +114,7 @@ const Signin = () => {
                 <Link to='/'>login?</Link>
             </div>
 
-            <p id="online-p" className={theme}>online-7</p>
+            <p id="online-p" className={theme}>online-{onlineCount}</p>
         </div>
     )
 }

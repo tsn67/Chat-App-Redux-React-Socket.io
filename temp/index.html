@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
     <div id="root">
-        <div class="login-container">
-
-            <div class="header-container">
-                <h2 class="dark">C<span style="color: green">ha</span>t T<span style="color: crimson;">ic</span>k</h2>
-                <button onc id="theme-btn" class="dark"><img src="../frontend/src/assets/night-mode.png" alt=""></button>
+        <div class="chat-container light">
+            <div class="info">
+                <p id="online-p" class="chat light">online: 10</p>
+                <button id="theme-btn" class="light"><img src="../frontend/public/assets/night-mode.png" alt=""/></button>    
             </div>
 
-            <div class="form-container dark">
-                <input type="text" class="username form-element" placeholder="uesrname">
-                <input type="password" class="password form-element" placeholder="password">
-                <button class="form-element btn-element">login</button>
+            <div class="chat-view">
+                <div class="chats mine light"><span class="light">user</span><p>Hello hello hai.. testing...</p></div>
+                <div class="chats others light"><span class="light">user</span><p>Hoo yeah working good</p></div>
+                <div class="chats others light"><span class="light">user</span><p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque dolores sed laboriosam illum blanditiis rem natus quo nulla ad distinctio eius sunt impedit amet fuga voluptatibus quae, beatae aliquam assumenda?</p></div>
+                <div class="chats mine light"><span class="light">user</span><p>okay!!</p></div>
             </div>
 
-            <p id="online-p" class="dark">online-7</p>
+            <div class="editor light">
+                <input class="light" type="text">
+                <button><img src="./send.png" alt="send-icon"></button>
+            </div>
+
         </div>
     </div>
-
 </body>
 </html>

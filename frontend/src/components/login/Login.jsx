@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTheme } from '../theme/themeSplicer';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { addUsername } from './LoginSplicer';
+import { io } from 'socket.io-client';
 
 const Login = () => {
 
@@ -15,6 +16,7 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('null');
+    const [onlineCount, setOnlineCount] = useState(0);
 
     var container = 'login-container';
     var themeBtn = 'theme-btn';
@@ -27,7 +29,19 @@ const Login = () => {
         dispatch(changeTheme(theme=='dark'?'light':'dark'));
     }
 
-    const backEndUrl = 'https://chat-app-redux-react-socketio-production.up.railway.app/confirmUser';
+    const backEndUrl = 'http://localhost:3000/confirmUser';
+
+    useEffect(() => {
+
+        const socket = io('http://localhost:3000');
+        socket.on('count', (msg) => {
+            setOnlineCount(msg.newCount);
+        });
+
+        return () => {
+            socket.disconnect();
+        };
+    }, []);
 
     function loginUser() {
         if(username.length == 0) setError('username is empty!');
@@ -70,7 +84,7 @@ const Login = () => {
                 <Link to='/signin'>signin?</Link>
             </div>
 
-            <p id="online-p" className={theme}>online-7</p>
+            <p id="online-p" className={theme}>online-{onlineCount}</p>
             {/* <button><Link to='/chat'>chattemptest</Link></button> */}
         </div>
     )

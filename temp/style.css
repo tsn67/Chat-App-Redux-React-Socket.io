@@ -4,8 +4,8 @@
     margin: 0px;
     padding: 0px;
     font-family: "Space Mono", serif;;
+    transition: ease-in 100ms;
 }
-
 
 body {
     width: 100%;
@@ -15,14 +15,36 @@ body {
     width: 100%;
 }
 
-.login-container {
+.login-container,.signin-container,.chat-container {
     width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.login-container.dark, .signin-container.dark, .chat-container.dark{
     background: rgb(11,17,33);
     background: linear-gradient(180deg, rgba(11,17,33,1) 0%, rgba(10,13,23,1) 100%); 
+}
+
+.login-container.light, .chat-container.light {
+    background: white;
+}
+
+.hint {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.hint.dark {
+    color: yellow;
+}
+
+.hint.light {
+    color: tomato;
 }
 
 .header-container {
@@ -36,6 +58,11 @@ body {
 .header-container > h2.dark {
     color: white;
 }
+
+.header-container > h2.light {
+    color: black;
+}
+
 
 #theme-btn {
     border: none;
@@ -52,15 +79,20 @@ body {
     outline: solid #6F7B9B 1px;
 }
 
+#theme-btn.light {
+    outline: solid black 1px;
+}
+
 #theme-btn > img {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .form-container {
-    margin-top: 20vh;
+    margin-top: 10vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
 }
 
@@ -69,13 +101,36 @@ body {
 }
 
 .form-container > .form-element {
-    outline: solid #6F7B9B 1px;
     border: none;
     border-radius: 4px;
     width: 300px;
     height: 40px;
     background: transparent;
 }
+
+.form-container > .form-element.dark {
+    outline: solid #6F7B9B 1px;
+}
+
+.form-container > .form-element.light {
+    outline: none;
+    background: lightskyblue;
+}
+
+.form-container > .btn-element {
+    transition: none;
+}
+
+.form-container > .dark.form-element.btn-element:hover {
+    background: white;
+    color: black;
+}
+
+.form-container > .light.form-element.btn-element:hover {
+    background: black;
+    color: white;
+}
+
 
 .form-container > input {
     box-sizing: border-box;
@@ -91,7 +146,168 @@ body {
     bottom: 15px;
 }
 
+#online-p.chat {
+    position: static;
+}
+
 #online-p.dark {
     color: rgb(52, 202, 115);
+}
+
+#online-p.light {
+    color: rgb(85, 49, 231);
+    font-weight: bold;
+}
+
+.chat-view {
+    width: 100%;
+    height: 90vh;
+    padding: 20px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    overflow: scroll;
+}
+
+.chat-view > .chats {
+    width: 30%;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.chat-view > .chats.mine {
+    transform: translateX(-20px);
+}
+
+.chat-view > .chats.mine.dark {
+    background: darkcyan;
+    color: white;
+}
+
+.chat-view > .chats.mine.light {
+    background: rgb(72, 221, 174);
+    color: black;
+}
+
+.chat-view > .chats.others.dark {
+    background: rgb(40, 40, 134);
+    color: white;
+}
+
+.chat-view > .chats.others.light {
+    background: rgb(246, 162, 130);
+    color: black;
+}
+
+.chat-view span.dark {
+    color: yellow;
+}
+
+.chat-view span.light {
+    color: rgb(39, 81, 189);
+}
+
+.chat-view > .chats.others {
+    transform: translateX(20px);
+}
+
+.editor {
+    box-sizing: border-box;
+    padding: 4px;
+    border-radius: 7px;
+    width: 420px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.editor.dark {
+    background: lightcyan;
+}
+
+.editor.light {
+    background: black;
+}
+
+
+.editor > input {
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    padding-inline: 10px;
+    width: 400px;
+    height: 40px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+}
+
+.editor > input.dark {
+    background: black;
+    color: white;
+}
+
+.editor > input.light {
+    background: lightskyblue;
+    color: black;
+}
+
+
+.editor > button {
+    border: none;
+    outline: none;
+    background: black;
+    height: 40px;
+    width: 40px;
+    margin-left: 10px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease-in 40ms;
+}
+
+.editor img {
+    width: 20px;
+    transform: translateX(2px);
+}
+
+.editor button:hover {
+    background: rgb(6, 34, 86);
+    scale: 1.1;
+}
+
+@media (max-width: 450px) {
+    .editor {
+        width: 340px;
+    }
+
+    .editor > input {
+        width: 340px;
+    }
+
+    .editor > button {
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+    }
+
+    .chat-view {
+        width: 340px;
+    }
+
+    .chat-view > .chats {
+        width: 80%;
+    }
+
+}
+
+.info {
+    margin-top: 5px;
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+    align-items: center;
 }
 
