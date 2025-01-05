@@ -27,7 +27,7 @@ const Signin = () => {
 
     useEffect(() => {
 
-        const socket = io('http://localhost:3000');
+        const socket = io('https://chat-app-redux-react-socketio-production.up.railway.app/');
         socket.on('count', (msg) => {
             setOnlineCount(msg.newCount);
         });
@@ -78,7 +78,7 @@ const Signin = () => {
                     username: username,
                     password: password
                 }
-                const response = await axios.post('http://localhost:3000/register', data);
+                const response = await axios.post('https://chat-app-redux-react-socketio-production.up.railway.app/register', data);
                 console.log(response.data);
                 setStatus('idle');
                 navigate('/');

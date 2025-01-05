@@ -29,11 +29,11 @@ const Login = () => {
         dispatch(changeTheme(theme=='dark'?'light':'dark'));
     }
 
-    const backEndUrl = 'http://localhost:3000/confirmUser';
+    const backEndUrl = 'https://chat-app-redux-react-socketio-production.up.railway.app/confirmUser';
 
     useEffect(() => {
 
-        const socket = io('http://localhost:3000');
+        const socket = io('https://chat-app-redux-react-socketio-production.up.railway.app/');
         socket.on('count', (msg) => {
             setOnlineCount(msg.newCount);
         });

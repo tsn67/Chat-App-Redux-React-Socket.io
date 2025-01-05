@@ -27,7 +27,7 @@ const Chat = () => {
     }
 
     useEffect(() => {
-        const socket = io('http://localhost:3000');
+        const socket = io('https://chat-app-redux-react-socketio-production.up.railway.app/');
         socket.on('count', (msg) => {
             setOnlineCount(msg.newCount);
         });
